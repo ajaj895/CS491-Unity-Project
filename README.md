@@ -28,3 +28,13 @@ The programs purpose is to entertain the user through game play.
 - MainMenu
 - SettingsMenu
 - PauseMenu
+
+## SCREENSHOTS
+
+Here are a few screenshots of the working game, with it's UI for Phase II of the project.
+
+![Main Title Screen](Images/MainScreen.png)
+
+![Pause Screen](Images/PauseScreen.png)
+
+![Settings Screen](Images/SettingsScreen.png)
