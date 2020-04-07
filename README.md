@@ -17,6 +17,8 @@ Jeremy Johnson: jc-johnson9@wiu.edu
 
 Choose between Starting the game, changing the settings or quitting the application. If the game is started, the user will see a new screen. Press the "p" key to open the pause menu. Press resume to return to the current screen, main menu to return to the main menu and quit to exit the application.
 
+First, unzip Build.Zip and then find the Rogue_Light.exe application and run it, or find the following in your path:
+
 C:\path\to\build\Rogue_Light.exe
 
 ## ABOUT
