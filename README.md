@@ -33,8 +33,21 @@ The programs purpose is to entertain the user through game play.
 
 Here are a few screenshots of the working game, with it's UI for Phase II of the project.
 
+### PHASE II SCREENSHOTS
+
 ![Main Title Screen](Images/MainScreen.png)
 
 ![Pause Screen](Images/PauseScreen.png)
 
 ![Settings Screen](Images/SettingsScreen.png)
+
+### PHASE III SCREENSHOTS
+
+![Keybinds Screen](Images/KeybindsScreen.png)
+
+![Starting Game](Images/StartGame.png)
+
+![Player taken damage](Images/PlayerDamage.png)
+
+![Game Over Screen](Images/EndScreen.png)
+
