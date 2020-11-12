@@ -12,24 +12,25 @@ public class Game : MonoBehaviour
     private DateTime startT; //A dateTime object representing the start time
     private DateTime endT; //A dateTime object representing the end time
     private TimeSpan runT; //A TimeSpan object representing the span of time between start to end times
-    private byte difficulty;
+    private int difficulty;
 
     private string[] keybinds;//In order of left|right|jump|crouch|attack|...etc
     
     // Start is called before the first frame update
-    public Game()//initiates the game.
+    public Game(int diff)//initiates the game.
     {
-        startGame();
+        startGame(diff);
     }
 
-    public void startGame()
+    public void startGame(int diff)
     {
-        initGame();
+        initGame(diff);
     }
 
-    private void initGame()//Sets the score to 0, sets the start time, reads and sets the keybinds, and sets the gamestate to running.
+    private void initGame(int diff)//Sets the score to 0, sets the start time, reads and sets the keybinds, and sets the gamestate to running.
     {
         score = 0;
+        setDifficulty(diff);
         setStartTime();
         keybinds = File.ReadAllLines("binds.txt");
 
@@ -153,12 +154,12 @@ public class Game : MonoBehaviour
         runT = endT - startT;
     }
 
-    protected void setDifficulty(byte diff)//sets the difficulty to the inputted difficulty
+    protected void setDifficulty(int diff)//sets the difficulty to the inputted difficulty
     {
         difficulty = diff;
     }
 
-    public byte getDifficulty()//Returns the difficulty
+    public int getDifficulty()//Returns the difficulty
     {
         return difficulty;
     }

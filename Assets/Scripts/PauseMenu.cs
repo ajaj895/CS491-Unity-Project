@@ -7,17 +7,26 @@ using TMPro;// For TextMaker Pro
 
 public class PauseMenu : MonoBehaviour
 {
-    private static Game game = MainGame.thisGame;// The game object should only be accessed in the MainGame script.
-    private static Player player = MainGame.thisPlayer;// The player object should only be accessed in the MainGame script.
+    private static Game game;// The game object should only be accessed in the MainGame script.
+    private static Player player;// The player object should only be accessed in the MainGame script.
 
-    public bool GameIsPaused = game.isPaused(); // Checks if game is paused from the MainGame Script (using the game class)
+    public bool GameIsPaused = false; // Checks if game is paused from the MainGame Script (using the game class)
     public GameObject pauseMenuUI;
     public GameObject gameUI;
     public GameObject endMenuUI;
+    
     void Start()
     {
-        
+        init(new Game(0), new Player()); //This is only temporary! If you are going to use pause menus, call init() from your game class.
     }
+    
+    //initiates the menus
+    public void init(Game gm, Player play) //This is called from MainGame class.
+    {
+        game = gm;
+        player = play;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -52,6 +61,7 @@ public class PauseMenu : MonoBehaviour
             gameUI.SetActive(false);
             Time.timeScale = 0f;
             game.pause();
+            //print("Player health from menus" + player.getMaxHealth());
         }
     }
 

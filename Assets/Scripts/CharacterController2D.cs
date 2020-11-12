@@ -19,7 +19,12 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
 
-	[Header("Events")]
+    public float knockbackForce; // the amount of knockback force
+    public float knockbackLength; // how long the player will be knocked back for
+    public float knockbackCount; // gets set to knockbackLength on hit (as this changes based on Time.deltaTime to prevent infinite knockback)
+    public bool hitFromRight; // whether the player was hit from right or not
+
+    [Header("Events")]
 	[Space]
 
 	public UnityEvent OnLandEvent;
@@ -107,9 +112,25 @@ public class CharacterController2D : MonoBehaviour
 
 			// Move the character by finding the target velocity
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
-			// And then smoothing it out and applying it to the character
-			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-
+            // And then smoothing it out and applying it to the character if the player is not currently knocked back
+            if (knockbackCount <= 0)
+            {
+                m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+            }
+            else
+            {
+                if (hitFromRight) // Knock the player left
+                {
+                    targetVelocity = new Vector2(-knockbackForce, knockbackForce);
+                    m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+                }
+                if (!hitFromRight) // Knock the player right
+                {
+                    targetVelocity = new Vector2(knockbackForce, knockbackForce);
+                    m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+                }
+                knockbackCount -= Time.deltaTime; // In order to put the value back below 0 and preventing infinite knockback
+            }
 			// If the input is moving the player right and the player is facing left...
 			if (move > 0 && !m_FacingRight)
 			{
